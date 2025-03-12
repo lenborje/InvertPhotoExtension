@@ -46,16 +46,28 @@ class PhotoEditingViewController: NSViewController, PHContentEditingController {
         if let inputImage = inputImage, let invertedImage = invertImage(inputImage) {
             // Använd den fil-URL som output.renderedContentURL tillhandahåller
             let outputURL = output.renderedContentURL
-            if let tiffData = invertedImage.tiffRepresentation,
-               let bitmap = NSBitmapImageRep(data: tiffData),
-               let data = bitmap.representation(using: .jpeg, properties: [:]) {
-                do {
-                    try data.write(to: outputURL)
-                    // Spara en enkel, tom justeringsdata. I ett produktionsscenario kan du spara mer information om redigeringen.
-                    output.adjustmentData = PHAdjustmentData(formatIdentifier: "se.lenborje.inverter", formatVersion: "1.0", data: Data())
-                } catch {
-                    print("Fel vid skrivning av fil: \(error)")
+            let directoryURL = outputURL.deletingLastPathComponent()
+
+            do {
+                try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                print("Failed to create directory: \(error)")
+            }
+
+            // Försök att hämta en CGImage-representation från den inverterade bilden
+            if let cgImage = invertedImage.cgImage(forProposedRect: nil, context: nil, hints: nil) {
+                let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
+                if let data = bitmapRep.representation(using: .jpeg, properties: [:]) {
+                    do {
+                        try data.write(to: outputURL)
+                        // Spara en enkel, tom justeringsdata. I ett produktionsscenario kan du spara mer information om redigeringen.
+                        output.adjustmentData = PHAdjustmentData(formatIdentifier: "se.lenborje.inverter", formatVersion: "1.0", data: Data())
+                    } catch {
+                        print("Fel vid skrivning av fil: \(error)")
+                    }
                 }
+            } else {
+                print("Kunde inte hämta CGImage från den inverterade bilden")
             }
         }
         
@@ -75,16 +87,26 @@ class PhotoEditingViewController: NSViewController, PHContentEditingController {
     
     /// Använder Core Image för att invertera en bild
     func invertImage(_ image: NSImage) -> NSImage? {
-        guard let tiffData = image.tiffRepresentation,
-              let ciImage = CIImage(data: tiffData),
-              let filter = CIFilter(name: "CIColorInvert") else { return nil }
+        // Try to get a CGImage representation of the NSImage
+        guard let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil) else {
+            return nil
+        }
+        
+        // Create a CIImage from the CGImage
+        let ciImage = CIImage(cgImage: cgImage)
+        
+        // Initialize the CIColorInvert filter
+        guard let filter = CIFilter(name: "CIColorInvert") else { return nil }
         filter.setValue(ciImage, forKey: kCIInputImageKey)
         
+        // Get the output CIImage from the filter
         guard let outputCIImage = filter.outputImage else { return nil }
         
+        // Render the output CIImage into a CGImage
         let context = CIContext(options: nil)
-        guard let cgImage = context.createCGImage(outputCIImage, from: outputCIImage.extent) else { return nil }
+        guard let outputCGImage = context.createCGImage(outputCIImage, from: outputCIImage.extent) else { return nil }
         
-        return NSImage(cgImage: cgImage, size: image.size)
+        // Create and return a new NSImage using the rendered CGImage
+        return NSImage(cgImage: outputCGImage, size: image.size)
     }
 }
