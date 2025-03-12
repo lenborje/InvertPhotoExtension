@@ -6,7 +6,6 @@
 //  Copyright © 2025 Lennart Börjeson. All rights reserved.
 //
 
-
 import AppKit
 import PhotosUI
 import CoreImage
@@ -30,6 +29,11 @@ class PhotoEditingViewController: NSViewController, PHContentEditingController {
         // Försök att läsa in den fullstorlekbild som ska redigeras
         if let url = contentEditingInput.fullSizeImageURL {
             inputImage = NSImage(contentsOf: url)
+            if let loadedImage = inputImage {
+                print("[DEBUG] Successfully loaded image from \(url). Size: \(loadedImage.size)")
+            } else {
+                print("[DEBUG] Failed to load image from \(url)")
+            }
             // Här kan du visa bilden i ett gränssnitt om du vill låta användaren se effekten i realtid
         }
     }
@@ -40,35 +44,45 @@ class PhotoEditingViewController: NSViewController, PHContentEditingController {
             completionHandler(nil)
             return
         }
+        print("[DEBUG] finishContentEditing called with contentEditingInput: \(input)")
         let output = PHContentEditingOutput(contentEditingInput: input)
+        print("[DEBUG] Created PHContentEditingOutput with output URL: \(output.renderedContentURL)")
         
-        // Om vi har en giltig bild, applicera inverteringseffekten
         if let inputImage = inputImage, let invertedImage = invertImage(inputImage) {
+            print("[DEBUG] Image inversion succeeded. Inverted image size: \(invertedImage.size)")
             // Använd den fil-URL som output.renderedContentURL tillhandahåller
             let outputURL = output.renderedContentURL
             let directoryURL = outputURL.deletingLastPathComponent()
-
+            
             do {
                 try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+                print("[DEBUG] Ensured directory exists at: \(directoryURL)")
             } catch {
                 print("Failed to create directory: \(error)")
             }
-
+            
             // Försök att hämta en CGImage-representation från den inverterade bilden
             if let cgImage = invertedImage.cgImage(forProposedRect: nil, context: nil, hints: nil) {
+                print("[DEBUG] Successfully retrieved CGImage from inverted image.")
                 let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
                 if let data = bitmapRep.representation(using: .jpeg, properties: [:]) {
                     do {
                         try data.write(to: outputURL)
-                        // Spara en enkel, tom justeringsdata. I ett produktionsscenario kan du spara mer information om redigeringen.
-                        output.adjustmentData = PHAdjustmentData(formatIdentifier: "se.lenborje.inverter", formatVersion: "1.0", data: Data())
+                        print("[DEBUG] Successfully wrote output file to: \(outputURL)")
+                        let adjustmentInfo: [String: Any] = ["inversion": true]
+                        let adjustmentData = try? JSONSerialization.data(withJSONObject: adjustmentInfo, options: [])
+                        output.adjustmentData = PHAdjustmentData(formatIdentifier: "se.lenborje.inverter", formatVersion: "1.0", data: adjustmentData ?? Data())
                     } catch {
                         print("Fel vid skrivning av fil: \(error)")
                     }
+                } else {
+                    print("[DEBUG] Failed to generate JPEG data from bitmap representation.")
                 }
             } else {
-                print("Kunde inte hämta CGImage från den inverterade bilden")
+                print("[DEBUG] Failed to retrieve CGImage from inverted image.")
             }
+        } else {
+            print("[DEBUG] Failed to invert image or input image is nil.")
         }
         
         completionHandler(output)
