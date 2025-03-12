@@ -17,8 +17,8 @@
             <rect key="frame" x="0.0" y="0.0" width="387" height="202"/>
             <subviews>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RG8-B3-jeZ">
-                    <rect key="frame" x="0.0" y="0.0" width="387" height="171"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="CM4-Im-zPw"/>
+                    <rect key="frame" x="-3" y="-3" width="393" height="177"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" imageFrameStyle="photo" id="CM4-Im-zPw"/>
                 </imageView>
                 <textField focusRingType="none" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aNc-0i-CWK">
                     <rect key="frame" x="141" y="179" width="104" height="16"/>
