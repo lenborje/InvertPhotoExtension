@@ -1,67 +1,90 @@
 //
 //  PhotoEditingViewController.swift
-//  Photos Inverter Plugin
+//  Photos Project Inverter
 //
-//  Created by Lennart Börjeson on 2025-03-12.
+//  Created by Lennart Börjeson on 2025-03-11.
+//  Copyright © 2025 Lennart Börjeson. All rights reserved.
 //
 
-import Cocoa
-import Photos
+
+import AppKit
 import PhotosUI
+import CoreImage
 
 class PhotoEditingViewController: NSViewController, PHContentEditingController {
-
-    var input: PHContentEditingInput?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-
+    
+    // Variabel för att lagra originalbilden
+    var inputImage: NSImage?
+    var contentEditingInput: PHContentEditingInput?
+    
     // MARK: - PHContentEditingController
-
+    
+    // Kontrollera om vi kan hantera tidigare sparade justeringsdata (här returnerar vi alltid true)
     func canHandle(_ adjustmentData: PHAdjustmentData) -> Bool {
-        // Inspect the adjustmentData to determine whether your extension can work with past edits.
-        // (Typically, you use its formatIdentifier and formatVersion properties to do this.)
-        return false
+        return true
     }
     
+    // Starta redigeringen med indata från Photos-appen
     func startContentEditing(with contentEditingInput: PHContentEditingInput, placeholderImage: NSImage) {
-        // Present content for editing, and keep the contentEditingInput for use when closing the edit session.
-        // If you returned true from canHandleAdjustmentData:, contentEditingInput has the original image and adjustment data.
-        // If you returned false, the contentEditingInput has past edits "baked in".
-        input = contentEditingInput
-    }
-    
-    func finishContentEditing(completionHandler: @escaping ((PHContentEditingOutput?) -> Void)) {
-        // Update UI to reflect that editing has finished and output is being rendered.
-        
-        // Render and provide output on a background queue.
-        DispatchQueue.global().async {
-            // Create editing output from the editing input.
-            let output = PHContentEditingOutput(contentEditingInput: self.input!)
-            
-            // Provide new adjustments and render output to given location.
-            // output.adjustmentData = <#new adjustment data#>
-            // let renderedJPEGData = <#output JPEG#>
-            // renderedJPEGData.writeToURL(output.renderedContentURL, atomically: true)
-            
-            // Call completion handler to commit edit to Photos.
-            completionHandler(output)
-            
-            // Clean up temporary files, etc.
+        self.contentEditingInput = contentEditingInput
+        // Försök att läsa in den fullstorlekbild som ska redigeras
+        if let url = contentEditingInput.fullSizeImageURL {
+            inputImage = NSImage(contentsOf: url)
+            // Här kan du visa bilden i ett gränssnitt om du vill låta användaren se effekten i realtid
         }
     }
-
+    
+    // När redigeringen är klar sparas resultatet
+    func finishContentEditing(completionHandler: @escaping ((PHContentEditingOutput?) -> Void)) {
+        guard let input = self.contentEditingInput else {
+            completionHandler(nil)
+            return
+        }
+        let output = PHContentEditingOutput(contentEditingInput: input)
+        
+        // Om vi har en giltig bild, applicera inverteringseffekten
+        if let inputImage = inputImage, let invertedImage = invertImage(inputImage) {
+            // Använd den fil-URL som output.renderedContentURL tillhandahåller
+            let outputURL = output.renderedContentURL
+            if let tiffData = invertedImage.tiffRepresentation,
+               let bitmap = NSBitmapImageRep(data: tiffData),
+               let data = bitmap.representation(using: .jpeg, properties: [:]) {
+                do {
+                    try data.write(to: outputURL)
+                    // Spara en enkel, tom justeringsdata. I ett produktionsscenario kan du spara mer information om redigeringen.
+                    output.adjustmentData = PHAdjustmentData(formatIdentifier: "se.lenborje.inverter", formatVersion: "1.0", data: Data())
+                } catch {
+                    print("Fel vid skrivning av fil: \(error)")
+                }
+            }
+        }
+        
+        completionHandler(output)
+    }
+    
+    // Hantera avbruten redigering (rensa eventuella resurser)
+    func cancelContentEditing() {
+        // Rensa upp om det behövs
+    }
+    
     var shouldShowCancelConfirmation: Bool {
-        // Determines whether a confirmation to discard changes should be shown to the user on cancel.
-        // (Typically, this should be "true" if there are any unsaved changes.)
         return false
     }
-
-    func cancelContentEditing() {
-        // Clean up temporary files, etc.
-        // May be called after finishContentEditingWithCompletionHandler: while you prepare output.
+    
+    // MARK: - Bildinvertering
+    
+    /// Använder Core Image för att invertera en bild
+    func invertImage(_ image: NSImage) -> NSImage? {
+        guard let tiffData = image.tiffRepresentation,
+              let ciImage = CIImage(data: tiffData),
+              let filter = CIFilter(name: "CIColorInvert") else { return nil }
+        filter.setValue(ciImage, forKey: kCIInputImageKey)
+        
+        guard let outputCIImage = filter.outputImage else { return nil }
+        
+        let context = CIContext(options: nil)
+        guard let cgImage = context.createCGImage(outputCIImage, from: outputCIImage.extent) else { return nil }
+        
+        return NSImage(cgImage: cgImage, size: image.size)
     }
-
 }
