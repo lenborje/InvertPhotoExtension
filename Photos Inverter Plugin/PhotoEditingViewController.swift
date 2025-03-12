@@ -16,6 +16,7 @@ class PhotoEditingViewController: NSViewController, PHContentEditingController {
     var inputImage: NSImage?
     var contentEditingInput: PHContentEditingInput?
     
+    @IBOutlet weak var previewImageView: NSImageView!
     // MARK: - PHContentEditingController
     
     // Kontrollera om vi kan hantera tidigare sparade justeringsdata (här returnerar vi alltid true)
@@ -30,11 +31,19 @@ class PhotoEditingViewController: NSViewController, PHContentEditingController {
         if let url = contentEditingInput.fullSizeImageURL {
             inputImage = NSImage(contentsOf: url)
             if let loadedImage = inputImage {
-                print("[DEBUG] Successfully loaded image from \(url). Size: \(loadedImage.size)")
-            } else {
-                print("[DEBUG] Failed to load image from \(url)")
-            }
-            // Här kan du visa bilden i ett gränssnitt om du vill låta användaren se effekten i realtid
+                        print("[DEBUG] Successfully loaded image from \(url). Size: \(loadedImage.size)")
+                        // Försök invertera bilden för att visa en preview
+                        if let invertedPreview = invertImage(loadedImage) {
+                            previewImageView.image = invertedPreview
+                            print("[DEBUG] Preview image updated with inverted image.")
+                        } else {
+                            print("[DEBUG] Inversion for preview failed.")
+                            // Visa originalbilden om inversion misslyckas
+                            previewImageView.image = loadedImage
+                        }
+                    } else {
+                        print("[DEBUG] Failed to load image from \(url)")
+                    }
         }
     }
     
