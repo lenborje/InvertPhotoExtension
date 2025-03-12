@@ -1,0 +1,554 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		A3D2FE472D817B8B00B0B62A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A3D2FE2D2D817B8900B0B62A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A3D2FE342D817B8900B0B62A;
+			remoteInfo = InvertPhotoExtension;
+		};
+		A3D2FE512D817B8B00B0B62A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A3D2FE2D2D817B8900B0B62A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A3D2FE342D817B8900B0B62A;
+			remoteInfo = InvertPhotoExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A3D2FE352D817B8900B0B62A /* InvertPhotoExtension.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InvertPhotoExtension.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3D2FE462D817B8B00B0B62A /* InvertPhotoExtensionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InvertPhotoExtensionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3D2FE502D817B8B00B0B62A /* InvertPhotoExtensionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InvertPhotoExtensionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		A3D2FE372D817B8900B0B62A /* InvertPhotoExtension */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = InvertPhotoExtension;
+			sourceTree = "<group>";
+		};
+		A3D2FE492D817B8B00B0B62A /* InvertPhotoExtensionTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = InvertPhotoExtensionTests;
+			sourceTree = "<group>";
+		};
+		A3D2FE532D817B8B00B0B62A /* InvertPhotoExtensionUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = InvertPhotoExtensionUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A3D2FE322D817B8900B0B62A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3D2FE432D817B8B00B0B62A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3D2FE4D2D817B8B00B0B62A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A3D2FE2C2D817B8900B0B62A = {
+			isa = PBXGroup;
+			children = (
+				A3D2FE372D817B8900B0B62A /* InvertPhotoExtension */,
+				A3D2FE492D817B8B00B0B62A /* InvertPhotoExtensionTests */,
+				A3D2FE532D817B8B00B0B62A /* InvertPhotoExtensionUITests */,
+				A3D2FE362D817B8900B0B62A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A3D2FE362D817B8900B0B62A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A3D2FE352D817B8900B0B62A /* InvertPhotoExtension.app */,
+				A3D2FE462D817B8B00B0B62A /* InvertPhotoExtensionTests.xctest */,
+				A3D2FE502D817B8B00B0B62A /* InvertPhotoExtensionUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A3D2FE342D817B8900B0B62A /* InvertPhotoExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A3D2FE5A2D817B8B00B0B62A /* Build configuration list for PBXNativeTarget "InvertPhotoExtension" */;
+			buildPhases = (
+				A3D2FE312D817B8900B0B62A /* Sources */,
+				A3D2FE322D817B8900B0B62A /* Frameworks */,
+				A3D2FE332D817B8900B0B62A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				A3D2FE372D817B8900B0B62A /* InvertPhotoExtension */,
+			);
+			name = InvertPhotoExtension;
+			packageProductDependencies = (
+			);
+			productName = InvertPhotoExtension;
+			productReference = A3D2FE352D817B8900B0B62A /* InvertPhotoExtension.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A3D2FE452D817B8B00B0B62A /* InvertPhotoExtensionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A3D2FE5D2D817B8B00B0B62A /* Build configuration list for PBXNativeTarget "InvertPhotoExtensionTests" */;
+			buildPhases = (
+				A3D2FE422D817B8B00B0B62A /* Sources */,
+				A3D2FE432D817B8B00B0B62A /* Frameworks */,
+				A3D2FE442D817B8B00B0B62A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A3D2FE482D817B8B00B0B62A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A3D2FE492D817B8B00B0B62A /* InvertPhotoExtensionTests */,
+			);
+			name = InvertPhotoExtensionTests;
+			packageProductDependencies = (
+			);
+			productName = InvertPhotoExtensionTests;
+			productReference = A3D2FE462D817B8B00B0B62A /* InvertPhotoExtensionTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A3D2FE4F2D817B8B00B0B62A /* InvertPhotoExtensionUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A3D2FE602D817B8B00B0B62A /* Build configuration list for PBXNativeTarget "InvertPhotoExtensionUITests" */;
+			buildPhases = (
+				A3D2FE4C2D817B8B00B0B62A /* Sources */,
+				A3D2FE4D2D817B8B00B0B62A /* Frameworks */,
+				A3D2FE4E2D817B8B00B0B62A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A3D2FE522D817B8B00B0B62A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A3D2FE532D817B8B00B0B62A /* InvertPhotoExtensionUITests */,
+			);
+			name = InvertPhotoExtensionUITests;
+			packageProductDependencies = (
+			);
+			productName = InvertPhotoExtensionUITests;
+			productReference = A3D2FE502D817B8B00B0B62A /* InvertPhotoExtensionUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A3D2FE2D2D817B8900B0B62A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					A3D2FE342D817B8900B0B62A = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					A3D2FE452D817B8B00B0B62A = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = A3D2FE342D817B8900B0B62A;
+					};
+					A3D2FE4F2D817B8B00B0B62A = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = A3D2FE342D817B8900B0B62A;
+					};
+				};
+			};
+			buildConfigurationList = A3D2FE302D817B8900B0B62A /* Build configuration list for PBXProject "InvertPhotoExtension" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A3D2FE2C2D817B8900B0B62A;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = A3D2FE362D817B8900B0B62A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A3D2FE342D817B8900B0B62A /* InvertPhotoExtension */,
+				A3D2FE452D817B8B00B0B62A /* InvertPhotoExtensionTests */,
+				A3D2FE4F2D817B8B00B0B62A /* InvertPhotoExtensionUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A3D2FE332D817B8900B0B62A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3D2FE442D817B8B00B0B62A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3D2FE4E2D817B8B00B0B62A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A3D2FE312D817B8900B0B62A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3D2FE422D817B8B00B0B62A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3D2FE4C2D817B8B00B0B62A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A3D2FE482D817B8B00B0B62A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A3D2FE342D817B8900B0B62A /* InvertPhotoExtension */;
+			targetProxy = A3D2FE472D817B8B00B0B62A /* PBXContainerItemProxy */;
+		};
+		A3D2FE522D817B8B00B0B62A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A3D2FE342D817B8900B0B62A /* InvertPhotoExtension */;
+			targetProxy = A3D2FE512D817B8B00B0B62A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A3D2FE582D817B8B00B0B62A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A3D2FE592D817B8B00B0B62A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		A3D2FE5B2D817B8B00B0B62A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = InvertPhotoExtension/InvertPhotoExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"InvertPhotoExtension/Preview Content\"";
+				DEVELOPMENT_TEAM = 6SCF5YBR83;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = se.lenborje.inverter.InvertPhotoExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A3D2FE5C2D817B8B00B0B62A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = InvertPhotoExtension/InvertPhotoExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"InvertPhotoExtension/Preview Content\"";
+				DEVELOPMENT_TEAM = 6SCF5YBR83;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = se.lenborje.inverter.InvertPhotoExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		A3D2FE5E2D817B8B00B0B62A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6SCF5YBR83;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = se.lenborje.inverter.InvertPhotoExtensionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InvertPhotoExtension.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/InvertPhotoExtension";
+			};
+			name = Debug;
+		};
+		A3D2FE5F2D817B8B00B0B62A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6SCF5YBR83;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = se.lenborje.inverter.InvertPhotoExtensionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InvertPhotoExtension.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/InvertPhotoExtension";
+			};
+			name = Release;
+		};
+		A3D2FE612D817B8B00B0B62A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6SCF5YBR83;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = se.lenborje.inverter.InvertPhotoExtensionUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = InvertPhotoExtension;
+			};
+			name = Debug;
+		};
+		A3D2FE622D817B8B00B0B62A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6SCF5YBR83;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = se.lenborje.inverter.InvertPhotoExtensionUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = InvertPhotoExtension;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A3D2FE302D817B8900B0B62A /* Build configuration list for PBXProject "InvertPhotoExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3D2FE582D817B8B00B0B62A /* Debug */,
+				A3D2FE592D817B8B00B0B62A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A3D2FE5A2D817B8B00B0B62A /* Build configuration list for PBXNativeTarget "InvertPhotoExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3D2FE5B2D817B8B00B0B62A /* Debug */,
+				A3D2FE5C2D817B8B00B0B62A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A3D2FE5D2D817B8B00B0B62A /* Build configuration list for PBXNativeTarget "InvertPhotoExtensionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3D2FE5E2D817B8B00B0B62A /* Debug */,
+				A3D2FE5F2D817B8B00B0B62A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A3D2FE602D817B8B00B0B62A /* Build configuration list for PBXNativeTarget "InvertPhotoExtensionUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3D2FE612D817B8B00B0B62A /* Debug */,
+				A3D2FE622D817B8B00B0B62A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A3D2FE2D2D817B8900B0B62A /* Project object */;
+}
