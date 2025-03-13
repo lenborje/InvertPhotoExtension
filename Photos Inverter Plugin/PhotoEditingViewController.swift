@@ -19,9 +19,18 @@ class PhotoEditingViewController: NSViewController, PHContentEditingController {
     @IBOutlet weak var previewImageView: NSImageView!
     // MARK: - PHContentEditingController
     
-    // Kontrollera om vi kan hantera tidigare sparade justeringsdata (här returnerar vi alltid true)
+    // Kontrollera om vi kan hantera tidigare sparade justeringsdata (här returnerar vi alltid false)
     func canHandle(_ adjustmentData: PHAdjustmentData) -> Bool {
-        return true
+        // Försök att tolka adjustmentData.data som en sträng (om det är giltigt UTF8)
+            let dataString = String(data: adjustmentData.data, encoding: .utf8) ?? "Ogiltig UTF8-data"
+            print("[DEBUG] canHandle called with adjustmentData:")
+            print("         formatIdentifier: \(adjustmentData.formatIdentifier)")
+            print("         formatVersion: \(adjustmentData.formatVersion)")
+            print("         data: \(dataString)")
+            
+            // Returnera false för att indikera att vi inte kan hantera denna adjustmentData
+            // Detta gör att Photos ger oss den nuvarande builden i fullSizeImageURL istället för originalet
+            return false
     }
     
     // Starta redigeringen med indata från Photos-appen
@@ -31,19 +40,19 @@ class PhotoEditingViewController: NSViewController, PHContentEditingController {
         if let url = contentEditingInput.fullSizeImageURL {
             inputImage = NSImage(contentsOf: url)
             if let loadedImage = inputImage {
-                        print("[DEBUG] Successfully loaded image from \(url). Size: \(loadedImage.size)")
-                        // Försök invertera bilden för att visa en preview
-                        if let invertedPreview = invertImage(loadedImage) {
-                            previewImageView.image = invertedPreview
-                            print("[DEBUG] Preview image updated with inverted image.")
-                        } else {
-                            print("[DEBUG] Inversion for preview failed.")
-                            // Visa originalbilden om inversion misslyckas
-                            previewImageView.image = loadedImage
-                        }
-                    } else {
-                        print("[DEBUG] Failed to load image from \(url)")
-                    }
+                print("[DEBUG] Successfully loaded image from \(url). Size: \(loadedImage.size)")
+                // Försök invertera bilden för att visa en preview
+                if let invertedPreview = invertImage(loadedImage) {
+                    previewImageView.image = invertedPreview
+                    print("[DEBUG] Preview image updated with inverted image.")
+                } else {
+                    print("[DEBUG] Inversion for preview failed.")
+                    // Visa originalbilden om inversion misslyckas
+                    previewImageView.image = loadedImage
+                }
+            } else {
+                print("[DEBUG] Failed to load image from \(url)")
+            }
         }
     }
     
@@ -120,6 +129,7 @@ class PhotoEditingViewController: NSViewController, PHContentEditingController {
         
         // Initialize the CIColorInvert filter
         guard let filter = CIFilter(name: "CIColorInvert") else { return nil }
+        filter.setDefaults()
         filter.setValue(ciImage, forKey: kCIInputImageKey)
         
         // Get the output CIImage from the filter
