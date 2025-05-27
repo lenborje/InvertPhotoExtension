@@ -28,9 +28,15 @@ class PhotoEditingViewController: NSViewController, PHContentEditingController {
         updatePreviewImage()
     }
     @IBAction func blackPointAction(_ sender: NSSlider) {
+        if (blackPoint.floatValue > whitePoint.floatValue) {
+            blackPoint.floatValue = whitePoint.floatValue
+        }
         updatePreviewImage()
     }
     @IBAction func whitePointAction(_ sender: NSSlider) {
+        if (whitePoint.floatValue < blackPoint.floatValue) {
+            whitePoint.floatValue = blackPoint.floatValue
+        }
         updatePreviewImage()
     }
     
@@ -58,9 +64,13 @@ class PhotoEditingViewController: NSViewController, PHContentEditingController {
             if let loadedImage = inputImage {
                 print("[DEBUG] Successfully loaded image from \(url). Size: \(loadedImage.size)")
                 // Försök invertera bilden för att visa en preview
-                if let invertedPreview = invertImage(loadedImage) {
+                autoContrast.state = .on
+                if let invertedPreview = processImage(loadedImage) {
                     previewImageView.image = invertedPreview
                     print("[DEBUG] Preview image updated with inverted image.")
+                    autoContrast.state = .off
+                    whitePoint.isEnabled = true
+                    blackPoint.isEnabled = true
                 } else {
                     print("[DEBUG] Inversion for preview failed.")
                     // Visa originalbilden om inversion misslyckas
@@ -82,8 +92,10 @@ class PhotoEditingViewController: NSViewController, PHContentEditingController {
         let output = PHContentEditingOutput(contentEditingInput: input)
         print("[DEBUG] Created PHContentEditingOutput with output URL: \(output.renderedContentURL)")
         
-        if let inputImage = inputImage, let invertedImage = invertImage(inputImage) {
-            print("[DEBUG] Image inversion succeeded. Inverted image size: \(invertedImage.size)")
+        if let inputImage = inputImage,
+           let processedImage = processImage(inputImage) {
+            // spara processedImage till output.renderedContentURL... {
+            print("[DEBUG] Image inversion succeeded. Inverted image size: \(processedImage.size)")
             // Använd den fil-URL som output.renderedContentURL tillhandahåller
             let outputURL = output.renderedContentURL
             let directoryURL = outputURL.deletingLastPathComponent()
@@ -96,7 +108,7 @@ class PhotoEditingViewController: NSViewController, PHContentEditingController {
             }
             
             // Försök att hämta en CGImage-representation från den inverterade bilden
-            if let cgImage = invertedImage.cgImage(forProposedRect: nil, context: nil, hints: nil) {
+            if let cgImage = processedImage.cgImage(forProposedRect: nil, context: nil, hints: nil) {
                 print("[DEBUG] Successfully retrieved CGImage from inverted image.")
                 let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
                 if let data = bitmapRep.representation(using: .jpeg, properties: [:]) {
@@ -138,6 +150,36 @@ class PhotoEditingViewController: NSViewController, PHContentEditingController {
     }
     
     // MARK: - Bildinvertering
+    
+    
+    func processImage(_ image: NSImage) -> NSImage? {
+        guard let inverted = invertImage(image) else { return nil }
+
+        let useSliders = (autoContrast.state == .off)
+        blackPoint.isEnabled = useSliders
+        whitePoint.isEnabled = useSliders
+
+        var black = CGFloat(blackPoint.floatValue) / 100.0
+        var white = CGFloat(whitePoint.floatValue) / 100.0
+
+
+        if autoContrast.state == .on {
+            if let (autoBlack, autoWhite) = computeLuminanceExtremes(from: inverted) {
+                black = autoBlack
+                white = autoWhite
+                blackPoint.floatValue = Float(black * 100)
+                whitePoint.floatValue = Float(white * 100)
+            }
+        }
+
+        if white > black {
+            return applyBlackWhitePoint(to: inverted, blackPoint: black, whitePoint: white)
+        } else {
+            return inverted
+        }
+    }
+    
+    
     
     /// Använder Core Image för att invertera en bild
     func invertImage(_ image: NSImage) -> NSImage? {
@@ -246,34 +288,8 @@ class PhotoEditingViewController: NSViewController, PHContentEditingController {
     
     func updatePreviewImage() {
         guard let original = inputImage else { return }
-        
-        let useSliders = (autoContrast.state == .off)
-        blackPoint.isEnabled = useSliders
-        whitePoint.isEnabled = useSliders
-        
-        // 1. Invertera bilden först
-        guard let inverted = invertImage(original) else {
-            previewImageView.image = original
-            return
-        }
 
-        // 2. Hämta svart- och vitpunkt
-        var black = CGFloat(blackPoint.floatValue) / 100.0
-        var white = CGFloat(whitePoint.floatValue) / 100.0
-        
-        if autoContrast.state == .on {
-            if let (autoBlack, autoWhite) = computeLuminanceExtremes(from: original) {
-                black = autoBlack
-                white = autoWhite
-                blackPoint.floatValue = Float(black * 100)
-                whitePoint.floatValue = Float(white * 100)
-            }
+        if let result = processImage(original) {
+            previewImageView.image = result
         }
-        
-        if white > black {
-            previewImageView.image = applyBlackWhitePoint(to: inverted, blackPoint: black, whitePoint: white)
-        } else {
-            previewImageView.image = original
-        }
-    }
-}
+    }}
