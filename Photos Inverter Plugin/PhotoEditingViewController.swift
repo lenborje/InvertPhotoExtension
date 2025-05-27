@@ -251,6 +251,13 @@ class PhotoEditingViewController: NSViewController, PHContentEditingController {
         blackPoint.isEnabled = useSliders
         whitePoint.isEnabled = useSliders
         
+        // 1. Invertera bilden först
+        guard let inverted = invertImage(original) else {
+            previewImageView.image = original
+            return
+        }
+
+        // 2. Hämta svart- och vitpunkt
         var black = CGFloat(blackPoint.floatValue) / 100.0
         var white = CGFloat(whitePoint.floatValue) / 100.0
         
@@ -264,7 +271,7 @@ class PhotoEditingViewController: NSViewController, PHContentEditingController {
         }
         
         if white > black {
-            previewImageView.image = applyBlackWhitePoint(to: original, blackPoint: black, whitePoint: white)
+            previewImageView.image = applyBlackWhitePoint(to: inverted, blackPoint: black, whitePoint: white)
         } else {
             previewImageView.image = original
         }
